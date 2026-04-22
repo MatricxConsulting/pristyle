@@ -11,10 +11,16 @@ const STORAGE_PREFIX =
   "/storage/v1/object/public/catalog-media/";
 
 function buildWaLink(src) {
-  const imagePath = src.startsWith(STORAGE_PREFIX)
-    ? src.slice(STORAGE_PREFIX.length)
-    : src;
-  const shareUrl = `${SITE_URL}/p/${imagePath}`;
+  let rawPath;
+  if (src.startsWith(STORAGE_PREFIX)) {
+    rawPath = src.slice(STORAGE_PREFIX.length);
+  } else {
+    // image locale : /images/populaires/nom fichier.webp
+    rawPath = src.replace(/^\//, '');
+  }
+  // Encoder chaque segment pour gérer les espaces et parenthèses
+  const encodedPath = rawPath.split('/').map(s => encodeURIComponent(s)).join('/');
+  const shareUrl = `${SITE_URL}/p/${encodedPath}`;
   const msg = encodeURIComponent(
     `Bonjour, je suis intéressé(e) par ce modèle PriStyle : ${shareUrl}`
   );

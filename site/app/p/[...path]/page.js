@@ -23,9 +23,11 @@ const COLLECTION_LABELS = {
 export async function generateMetadata({ params }) {
   const { path } = await params;
   const imagePath = path.join('/');
-  const imageUrl = `${STORAGE_URL}${imagePath}`;
+  const isLocal = path[0] === 'images';
+  const imageUrl = isLocal ? `/${imagePath}` : `${STORAGE_URL}${imagePath}`;
+  const encodedPath = path.map(s => encodeURIComponent(s)).join('/');
 
-  const root = path[0];
+  const root = isLocal ? path[1] : path[0];
   const collectionLabel = COLLECTION_LABELS[root] || 'Collection PriStyle';
   const title = `Modèle PriStyle – ${collectionLabel}`;
   const description = 'Tenues africaines sur mesure, livrées partout. Commandez sur WhatsApp.';
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/p/${imagePath}`,
+      url: `${SITE_URL}/p/${encodedPath}`,
       siteName: 'PriStyle',
       images: [{ url: imageUrl, width: 800, height: 1067, alt: title }],
       type: 'website',
@@ -52,13 +54,22 @@ export async function generateMetadata({ params }) {
 
 export default async function SharePage({ params }) {
   const { path } = await params;
+  // Next.js décode automatiquement les segments — on récupère les noms réels
   const imagePath = path.join('/');
-  const imageUrl = `${STORAGE_URL}${imagePath}`;
-  const root = path[0];
-  const collectionHref = GENDER_ROUTES[root] || '/';
-  const collectionLabel = COLLECTION_LABELS[root] || 'Collection';
 
-  const shareUrl = `${SITE_URL}/p/${imagePath}`;
+  // Image locale (ex: images/populaires/...) ou Supabase (ex: femme/robes/...)
+  const isLocal = path[0] === 'images';
+  const imageUrl = isLocal
+    ? `/${imagePath}`
+    : `${STORAGE_URL}${imagePath}`;
+
+  const root = isLocal ? path[1] : path[0];
+  const collectionHref = GENDER_ROUTES[root] || '/';
+  const collectionLabel = COLLECTION_LABELS[root] || 'Collection PriStyle';
+
+  // Reconstruire le shareUrl encodé pour le bouton WA
+  const encodedPath = path.map(s => encodeURIComponent(s)).join('/');
+  const shareUrl = `${SITE_URL}/p/${encodedPath}`;
   const waMsg = encodeURIComponent(`Bonjour, je suis intéressé(e) par ce modèle PriStyle : ${shareUrl}`);
   const waLink = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
 
