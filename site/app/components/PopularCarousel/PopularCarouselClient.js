@@ -99,6 +99,8 @@ export default function PopularCarouselClient({ items }) {
     resumeTimerRef.current = setTimeout(() => {
       isDraggingRef.current = false;
     }, RESUME_DELAY);
+    // Réinitialise hasDragged après un court délai pour que les clics suivants fonctionnent
+    setTimeout(() => { hasDraggedRef.current = false; }, 300);
   }
 
   // Empêche les clics sur les liens si l'user a dragué
@@ -141,10 +143,21 @@ export default function PopularCarouselClient({ items }) {
                   onPointerDown={e => e.stopPropagation()}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (!hasDraggedRef.current) setModalSrc(item.src);
+                    setModalSrc(item.src);
                   }}
                 >
                   ✦ Commander sur mesure
+                </button>
+                <button
+                  className={styles.voirPlusBtn}
+                  type="button"
+                  onPointerDown={e => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setModalSrc(item.src);
+                  }}
+                >
+                  Voir plus
                 </button>
               </div>
             </div>

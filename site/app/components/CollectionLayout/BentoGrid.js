@@ -41,6 +41,13 @@ export default function BentoGrid({ products }) {
                 <span className={styles.ctaLong}>💬 Commander sur mesure</span>
                 <span className={styles.ctaShort}>💬 Commander</span>
               </button>
+              <button
+                className={styles.bentoVoirPlusBtn}
+                onClick={() => setModalSrc(p.src)}
+                type="button"
+              >
+                Voir plus
+              </button>
             </div>
           </div>
         ))}
