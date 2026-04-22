@@ -3,6 +3,7 @@
   min-height: 100vh;
   background: var(--color-cream);
   padding-top: 58px;
+  overflow-x: hidden;
 }
 
 /* ===== SPLIT HEADER (même colonnes que le layout) ===== */
@@ -229,20 +230,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-md);
   margin-top: var(--space-3xl);
   padding-top: var(--space-2xl);
   border-top: 1px solid rgba(0, 0, 0, 0.07);
+  width: 100%;
 }
 
 .paginationBtn {
-  padding: 11px 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  padding: 10px 22px;
   border: 1.5px solid var(--color-gold);
   border-radius: var(--radius-full);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--color-gold-dark);
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: all 0.2s ease;
   text-decoration: none;
@@ -262,11 +269,12 @@
 }
 
 @media (max-width: 860px) {
-  /* splitHeader : ← Accueil à gauche + titre à droite, même ligne */
+  /* splitHeader : ← Accueil à gauche + titre tout à droite */
   .splitHeader {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: var(--space-sm);
     padding: var(--space-md) var(--container-padding) var(--space-sm);
   }
@@ -278,16 +286,19 @@
 
   .splitHeaderRight {
     padding-left: 0;
-    flex: 1;
+    margin-left: auto;
+    text-align: right;
   }
 
   .pageTitle {
-    font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
     line-height: 1.15;
+    text-align: right;
   }
 
   .layout {
     grid-template-columns: 1fr;
+    overflow-x: hidden;
   }
 
   .sidebar {
@@ -357,5 +368,20 @@
 
   .ctaShort {
     display: inline;
+  }
+
+  .pagination {
+    gap: 8px;
+    padding-top: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .paginationBtn {
+    font-size: 0.62rem;
+    padding: 9px 16px;
+    letter-spacing: 0.04em;
+    flex: 1;
+    justify-content: center;
+    max-width: 48%;
   }
 }

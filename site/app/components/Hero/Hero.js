@@ -25,11 +25,11 @@ export default function Hero() {
           Sublimé
         </h1>
         <p className={styles.heroSubtitle}>
-          Haute couture africaine sur mesure — Des créations uniques
+          Haute couture africaine sur mesure · Des créations uniques
           confectionnées avec passion et savoir-faire artisanal
         </p>
         <div className={styles.heroCta}>
-          <a href="#collections" className="btn btn-primary" id="hero-cta-discover">
+          <a href="#populaires" className="btn btn-primary" id="hero-cta-discover">
             Découvrir nos créations
           </a>
           <a
