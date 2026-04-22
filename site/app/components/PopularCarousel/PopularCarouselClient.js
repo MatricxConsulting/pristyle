@@ -30,6 +30,7 @@ export default function PopularCarouselClient({ items }) {
   const trackRef = useRef(null);
   const posRef = useRef(0);
   const isDraggingRef = useRef(false);
+  const isPointerDownRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartPosRef = useRef(0);
   const hasDraggedRef = useRef(false);
@@ -69,6 +70,7 @@ export default function PopularCarouselClient({ items }) {
   }, [carouselItems]);
 
   function onPointerDown(e) {
+    isPointerDownRef.current = true;
     isDraggingRef.current = true;
     hasDraggedRef.current = false;
     setGrabbing(true);
@@ -79,9 +81,11 @@ export default function PopularCarouselClient({ items }) {
   }
 
   function onPointerMove(e) {
-    if (!isDraggingRef.current) return;
+    // Ne traite le mouvement que si le pointeur est physiquement pressé
+    if (!isPointerDownRef.current) return;
     const dx = e.clientX - dragStartXRef.current;
-    if (Math.abs(dx) > 3) hasDraggedRef.current = true;
+    // Seuil plus grand (8px) pour éviter les faux positifs sur mobile
+    if (Math.abs(dx) > 8) hasDraggedRef.current = true;
     let newPos = dragStartPosRef.current - dx;
     const track = trackRef.current;
     if (track) {
@@ -93,22 +97,20 @@ export default function PopularCarouselClient({ items }) {
   }
 
   function onPointerUp() {
-    if (!isDraggingRef.current) return;
+    if (!isPointerDownRef.current) return;
+    isPointerDownRef.current = false;
     setGrabbing(false);
     clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      isDraggingRef.current = false;
-    }, RESUME_DELAY);
-    // Réinitialise hasDragged après un court délai pour que les clics suivants fonctionnent
-    setTimeout(() => { hasDraggedRef.current = false; }, 300);
-  }
-
-  // Empêche les clics sur les liens si l'user a dragué
-  function onClickCapture(e) {
     if (hasDraggedRef.current) {
-      e.preventDefault();
-      e.stopPropagation();
+      // Pause l'auto-scroll seulement si l'user a vraiment dragué
+      resumeTimerRef.current = setTimeout(() => {
+        isDraggingRef.current = false;
+      }, RESUME_DELAY);
+    } else {
+      isDraggingRef.current = false;
     }
+    // Reset immédiat pour que les clics suivants fonctionnent
+    hasDraggedRef.current = false;
   }
 
   if (carouselItems.length === 0) return null;
@@ -121,7 +123,6 @@ export default function PopularCarouselClient({ items }) {
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
-      onClickCapture={onClickCapture}
       style={{ touchAction: "pan-y" }}
     >
       <div ref={trackRef} className={styles.carouselTrack}>

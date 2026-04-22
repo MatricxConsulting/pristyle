@@ -169,6 +169,19 @@
 
 
 
+/* Sur les écrans tactiles (mobiles/tablettes), overlay toujours visible */
+@media (hover: none) {
+  .overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.32);
+  }
+
+  .ctaBtn,
+  .voirPlusBtn {
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
