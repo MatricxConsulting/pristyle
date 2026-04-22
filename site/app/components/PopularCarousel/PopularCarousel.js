@@ -27,7 +27,7 @@ export default function PopularCarousel() {
     <section id="populaires" className={styles.section}>
       <div className={styles.header}>
         <h2 className={styles.title}>Nos robes les plus populaires</h2>
-        <p className={styles.subtitle}>Nos créations les plus demandées — disponibles en quantité limitée.</p>
+        <p className={styles.subtitle}>Nos créations les plus demandées, disponibles en quantité limitée.</p>
       </div>
       {/* Le client shuffle les 37 images à chaque visite */}
       <PopularCarouselClient items={items} />
