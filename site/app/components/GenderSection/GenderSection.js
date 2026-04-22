@@ -19,6 +19,7 @@ export default function GenderSection() {
               src="/images/genre/homme.webp"
               alt="Collection Homme — Mode africaine wax"
               fill
+              priority
               className={styles.cardImage}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -36,6 +37,7 @@ export default function GenderSection() {
               src="/images/genre/femme.webp"
               alt="Collection Femme — Mode africaine wax"
               fill
+              priority
               className={styles.cardImage}
               sizes="(max-width: 768px) 100vw, 50vw"
             />

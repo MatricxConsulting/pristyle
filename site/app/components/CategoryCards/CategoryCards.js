@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./CategoryCards.module.css";
 import { getCategoryCardsData } from "@/lib/data";
 
-function CategoryCard({ title, image1, image2, count, slug, gender }) {
+function CategoryCard({ title, image1, image2, count, slug, gender, priority }) {
   return (
     <a
       href={`/${gender}?cat=${slug}&page=1`}
@@ -14,6 +14,7 @@ function CategoryCard({ title, image1, image2, count, slug, gender }) {
           src={image1}
           alt={title.replace("\n", " ")}
           fill
+          priority={priority}
           className={styles.cardImagePrimary}
           sizes="(max-width: 600px) 50vw, (max-width: 1024px) 50vw, 25vw"
         />
@@ -65,8 +66,8 @@ export default async function CategoryCards() {
         </div>
 
         <div className={`${styles.grid} stagger`}>
-          {femmeCategories.map((cat) => (
-            <CategoryCard key={cat.slug} {...cat} gender="femme" />
+          {femmeCategories.map((cat, i) => (
+            <CategoryCard key={cat.slug} {...cat} gender="femme" priority={i === 0} />
           ))}
         </div>
 
@@ -94,8 +95,8 @@ export default async function CategoryCards() {
         </div>
 
         <div className={`${styles.grid} stagger`}>
-          {hommeCategories.map((cat) => (
-            <CategoryCard key={cat.slug} {...cat} gender="homme" />
+          {hommeCategories.map((cat, i) => (
+            <CategoryCard key={cat.slug} {...cat} gender="homme" priority={i === 0} />
           ))}
         </div>
 

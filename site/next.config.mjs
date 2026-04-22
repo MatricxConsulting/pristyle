@@ -1,10 +1,24 @@
 // Contourne la vérification SSL (proxy d'entreprise / VPN) — dev uniquement
 if (process.env.NODE_ENV !== 'production') {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+  // Supprime le warning Node.js pour éviter le bruit dans l'overlay Next.js
+  const _emit = process.emit.bind(process);
+  process.emit = function (name, warning, ...args) {
+    if (
+      name === 'warning' &&
+      String(warning?.message ?? warning).includes('NODE_TLS_REJECT_UNAUTHORIZED')
+    ) {
+      return false;
+    }
+    return _emit(name, warning, ...args);
+  };
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {
+    root: import.meta.dirname,
+  },
   images: {
     remotePatterns: [
       {

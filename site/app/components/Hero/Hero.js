@@ -33,7 +33,7 @@ export default function Hero() {
             Découvrir nos créations
           </a>
           <a
-            href="https://wa.me/33XXXXXXXXXX"
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je souhaite commander une tenue sur mesure PriStyle')}`}
             className="btn btn-outline"
             style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff" }}
             target="_blank"

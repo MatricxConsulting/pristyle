@@ -10,7 +10,7 @@ export async function getCategoryCardsData(categorySlug) {
     .single();
 
   if (catError || !category) {
-    console.error('Error fetching category:', categorySlug, catError);
+    console.warn('Supabase: category not found:', categorySlug, catError?.message);
     return [];
   }
 
@@ -31,11 +31,9 @@ export async function getCategoryCardsData(categorySlug) {
     .order('display_order');
 
   if (error) {
-    console.error('Error fetching subcategories:', error);
+    console.warn('Supabase: subcategories error:', error?.message);
     return [];
   }
-  
-  console.log(`Fetched ${subcategories.length} subcategories for ${categorySlug}`);
 
   return subcategories.map(sub => {
     const allImages = sub.products.flatMap(p => p.product_images.map(img => img.image_url));
@@ -75,7 +73,7 @@ export async function getEnfantPairs() {
     .single();
 
   if (catError || !category) {
-    console.error('Error fetching enfant category:', catError);
+    console.warn('Supabase: enfant category not found:', catError?.message);
     return [];
   }
 
@@ -85,7 +83,7 @@ export async function getEnfantPairs() {
     .eq('category_id', category.id);
 
   if (subError || !subcategories?.length) {
-    console.error('Error fetching enfant subcategories:', subError);
+    console.warn('Supabase: enfant subcategories error:', subError?.message);
     return [];
   }
 
@@ -98,7 +96,7 @@ export async function getEnfantPairs() {
     .eq('is_active', true);
 
   if (prodError || !products) {
-    console.error('Error fetching enfant products:', prodError);
+    console.warn('Supabase: enfant products error:', prodError?.message);
     return [];
   }
 
@@ -184,7 +182,7 @@ export async function getMarriageImages() {
     .single();
 
   if (catError || !category) {
-    console.error('Error fetching mariage category:', catError);
+    console.warn('Supabase: mariage category not found:', catError?.message);
     return [];
   }
 
@@ -194,7 +192,7 @@ export async function getMarriageImages() {
     .eq('category_id', category.id);
 
   if (subError || !subcategories?.length) {
-    console.error('Error fetching mariage subcategories:', subError);
+    console.warn('Supabase: mariage subcategories error:', subError?.message);
     return [];
   }
 
@@ -213,7 +211,7 @@ export async function getMarriageImages() {
     .eq('is_active', true);
 
   if (prodError || !products) {
-    console.error('Error fetching mariage products:', prodError);
+    console.warn('Supabase: mariage products error:', prodError?.message);
     return [];
   }
 
