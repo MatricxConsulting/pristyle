@@ -2,21 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import styles from "./MarriageSection.module.css";
 
-const SPEED = 83;          // px/s — identique à l'animation CSS originale (192s)
+const ProductModal = dynamic(
+  () => import("../ProductModal/ProductModal"),
+  { ssr: false }
+);
+
+const SPEED = 83;          // px/s
 const RESUME_DELAY = 5000; // ms avant reprise auto après drag
-
-const WA_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
-const STORAGE_PREFIX = process.env.NEXT_PUBLIC_SUPABASE_URL + '/storage/v1/object/public/catalog-media/';
-
-function buildWaLink(imageSrc) {
-  const imagePath = imageSrc.startsWith(STORAGE_PREFIX) ? imageSrc.slice(STORAGE_PREFIX.length) : imageSrc;
-  const shareUrl = `${SITE_URL}/p/${imagePath}`;
-  const msg = `Bonjour, je suis intéressé(e) par ce modèle de tenue mariage PriStyle : ${shareUrl}`;
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-}
 
 function shuffleAndPick(arr, count) {
   const copy = [...arr];
@@ -30,10 +25,12 @@ function shuffleAndPick(arr, count) {
 export default function MarriageCarousel({ allImages }) {
   const [items, setItems] = useState([]);
   const [grabbing, setGrabbing] = useState(false);
+  const [modalSrc, setModalSrc] = useState(null);
 
   const trackRef = useRef(null);
   const posRef = useRef(0);
   const isDraggingRef = useRef(false);
+  const isPointerDownRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartPosRef = useRef(0);
   const hasDraggedRef = useRef(false);
@@ -73,6 +70,7 @@ export default function MarriageCarousel({ allImages }) {
   }, [items]);
 
   function onPointerDown(e) {
+    isPointerDownRef.current = true;
     isDraggingRef.current = true;
     hasDraggedRef.current = false;
     setGrabbing(true);
@@ -83,9 +81,9 @@ export default function MarriageCarousel({ allImages }) {
   }
 
   function onPointerMove(e) {
-    if (!isDraggingRef.current) return;
+    if (!isPointerDownRef.current) return;
     const dx = e.clientX - dragStartXRef.current;
-    if (Math.abs(dx) > 3) hasDraggedRef.current = true;
+    if (Math.abs(dx) > 8) hasDraggedRef.current = true;
     let newPos = dragStartPosRef.current - dx;
     const track = trackRef.current;
     if (track) {
@@ -97,19 +95,18 @@ export default function MarriageCarousel({ allImages }) {
   }
 
   function onPointerUp() {
-    if (!isDraggingRef.current) return;
+    if (!isPointerDownRef.current) return;
+    isPointerDownRef.current = false;
     setGrabbing(false);
     clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      isDraggingRef.current = false;
-    }, RESUME_DELAY);
-  }
-
-  function onClickCapture(e) {
     if (hasDraggedRef.current) {
-      e.preventDefault();
-      e.stopPropagation();
+      resumeTimerRef.current = setTimeout(() => {
+        isDraggingRef.current = false;
+      }, RESUME_DELAY);
+    } else {
+      isDraggingRef.current = false;
     }
+    hasDraggedRef.current = false;
   }
 
   if (items.length === 0) {
@@ -117,13 +114,13 @@ export default function MarriageCarousel({ allImages }) {
   }
 
   return (
+    <>
     <div
       className={`${styles.carouselOuter}${grabbing ? ` ${styles.grabbing}` : ""}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
-      onClickCapture={onClickCapture}
       style={{ touchAction: "pan-y" }}
     >
       <div ref={trackRef} className={styles.carouselTrack}>
@@ -140,18 +137,38 @@ export default function MarriageCarousel({ allImages }) {
             {img.isBestSeller && (
               <span className={styles.goldBadge}>Best-seller</span>
             )}
-            <a
-              href={buildWaLink(img.src)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.marriageCta}
-              onClick={(e) => e.stopPropagation()}
-            >
-              ✦ Commander sur mesure
-            </a>
+            <div className={styles.marriageCtaGroup}>
+              <button
+                className={styles.marriageCta}
+                type="button"
+                onPointerDown={e => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setModalSrc(img.src);
+                }}
+              >
+                ✦ Commander sur mesure
+              </button>
+              <button
+                className={styles.marriageVoirPlusBtn}
+                type="button"
+                onPointerDown={e => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setModalSrc(img.src);
+                }}
+              >
+                Voir plus
+              </button>
+            </div>
           </div>
         ))}
       </div>
     </div>
+
+    {modalSrc && (
+      <ProductModal src={modalSrc} onClose={() => setModalSrc(null)} />
+    )}
+    </>
   );
 }
