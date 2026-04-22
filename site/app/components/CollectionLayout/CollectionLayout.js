@@ -1,17 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './CollectionLayout.module.css';
-
-const WA_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
-const STORAGE_PREFIX = process.env.NEXT_PUBLIC_SUPABASE_URL + '/storage/v1/object/public/catalog-media/';
-
-function buildWaLink(src) {
-  const imagePath = src.startsWith(STORAGE_PREFIX) ? src.slice(STORAGE_PREFIX.length) : src;
-  const shareUrl = `${SITE_URL}/p/${imagePath}`;
-  const msg = encodeURIComponent(`Bonjour, je suis intéressé(e) par ce modèle PriStyle : ${shareUrl}`);
-  return `https://wa.me/${WA_NUMBER}?text=${msg}`;
-}
+import BentoGrid from './BentoGrid';
 
 export default function CollectionLayout({
   gender,
@@ -69,37 +58,7 @@ export default function CollectionLayout({
                   {total} modèle{total > 1 ? 's' : ''} — page {page}
                 </p>
 
-                <div className={styles.bentoGrid}>
-                  {products.map((p, i) => (
-                    <div key={p.id ?? i} className={styles.bentoCard}>
-                      <div className={styles.bentoImgWrap}>
-                        <Image
-                          src={p.src}
-                          alt="Modèle PriStyle"
-                          width={600}
-                          height={800}
-                          className={styles.bentoImg}
-                          sizes="(max-width: 480px) 50vw, (max-width: 860px) 50vw, 30vw"
-                          loading={i < 2 ? 'eager' : 'lazy'}
-                          priority={i === 0}
-                          quality={68}
-                          placeholder="empty"
-                        />
-                      </div>
-                      <div className={styles.bentoOverlay}>
-                        <a
-                          href={buildWaLink(p.src)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.bentoCta}
-                        >
-                          <span className={styles.ctaLong}>💬 Commander sur mesure</span>
-                          <span className={styles.ctaShort}>💬 Commander</span>
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <BentoGrid products={products} />
 
                 {(hasPrev || hasNext) && (
                   <div className={styles.pagination}>

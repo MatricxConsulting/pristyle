@@ -2,21 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import styles from "./PopularCarousel.module.css";
 
-const SPEED = 54;          // px/s — identique à l'animation CSS originale (240s)
-const RESUME_DELAY = 5000; // ms avant reprise auto après drag
+const ProductModal = dynamic(
+  () => import("../ProductModal/ProductModal"),
+  { ssr: false }
+);
 
-const WA_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-
-function buildWaLink(src) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
-  const storagePrefix = process.env.NEXT_PUBLIC_SUPABASE_URL + '/storage/v1/object/public/catalog-media/';
-  const imagePath = src.startsWith(storagePrefix) ? src.slice(storagePrefix.length) : src;
-  const shareUrl = `${siteUrl}/p/${imagePath}`;
-  const msg = encodeURIComponent(`Bonjour, je suis intéressé(e) par ce modèle PriStyle : ${shareUrl}`);
-  return `https://wa.me/${WA_NUMBER}?text=${msg}`;
-}
+const SPEED = 54;
+const RESUME_DELAY = 5000;
 
 function shuffleArray(arr) {
   const copy = [...arr];
@@ -30,6 +25,7 @@ function shuffleArray(arr) {
 export default function PopularCarouselClient({ items }) {
   const [carouselItems, setCarouselItems] = useState([]);
   const [grabbing, setGrabbing] = useState(false);
+  const [modalSrc, setModalSrc] = useState(null);
 
   const trackRef = useRef(null);
   const posRef = useRef(0);
@@ -116,6 +112,7 @@ export default function PopularCarouselClient({ items }) {
   if (carouselItems.length === 0) return null;
 
   return (
+    <>
     <div
       className={`${styles.carouselContainer}${grabbing ? ` ${styles.grabbing}` : ""}`}
       onPointerDown={onPointerDown}
@@ -138,16 +135,17 @@ export default function PopularCarouselClient({ items }) {
                 style={{ objectFit: "cover" }}
               />
               <div className={styles.overlay}>
-                <a
-                  href={buildWaLink(item.src)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
                   className={styles.ctaBtn}
+                  type="button"
                   onPointerDown={e => e.stopPropagation()}
-                  onClick={e => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!hasDraggedRef.current) setModalSrc(item.src);
+                  }}
                 >
                   ✦ Commander sur mesure
-                </a>
+                </button>
               </div>
             </div>
             <div className={styles.itemInfo}>
@@ -157,5 +155,10 @@ export default function PopularCarouselClient({ items }) {
         ))}
       </div>
     </div>
+
+    {modalSrc && (
+      <ProductModal src={modalSrc} onClose={() => setModalSrc(null)} />
+    )}
+  </>
   );
 }

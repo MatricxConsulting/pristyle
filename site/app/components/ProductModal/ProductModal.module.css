@@ -1,0 +1,157 @@
+/* ===== BACKDROP ===== */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  background: rgba(10, 8, 5, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.22s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ===== MODAL ===== */
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #1a1a1a;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(200,169,97,0.18);
+  animation: slideUp 0.28s cubic-bezier(0.16,1,0.3,1);
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== FERMER ===== */
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 10;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+.closeBtn:hover { background: rgba(200,169,97,0.8); }
+
+/* ===== ZONE IMAGE (3D) ===== */
+.cardWrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  perspective: 900px;
+  cursor: grab;
+  /* empêche le scroll pendant le toucher sur mobile */
+  touch-action: none;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* valeur initiale sans scale */
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1);
+}
+
+/* Reflet lumineux animé par le tilt via CSS custom props (optionnel) */
+.glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255,255,255,0.13) 0%,
+    transparent 70%
+  );
+  opacity: 0.7;
+  border-radius: inherit;
+}
+
+/* ===== BAS DU MODAL ===== */
+.body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #1a1a1a;
+}
+
+.bodyTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.bodyDesc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ===== BOUTON WHATSAPP ===== */
+.waBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #25d366;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 13px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-top: 4px;
+  transition: background 0.2s, transform 0.2s;
+}
+.waBtn:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 520px) {
+  .modal { max-width: 100%; border-radius: 18px 18px 0 0; }
+  .backdrop { align-items: flex-end; padding: 0; }
+  .cardWrap { aspect-ratio: 3 / 3.8; }
+  .body { padding: 16px 16px 28px; }
+  .bodyTitle { font-size: 0.95rem; }
+  .bodyDesc { font-size: 0.75rem; }
+  .waBtn { font-size: 0.74rem; padding: 12px 20px; width: 100%; }
+}
