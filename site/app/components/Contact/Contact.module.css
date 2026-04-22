@@ -1,0 +1,167 @@
+.section {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-cream) 0%,
+    var(--color-cream-warm) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--color-gold-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.colTitle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+/* ===== CARTES BORDÉES ===== */
+.coordonnees,
+.localisation {
+  border: 1.5px solid var(--color-gold);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  padding: var(--space-xl) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ===== GAUCHE : COORDONNÉES ===== */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.cardIcon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: var(--space-xs);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.cardLabel {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-black);
+}
+
+.cardSub {
+  font-size: 0.82rem;
+  color: var(--color-gray);
+}
+
+.cardValue {
+  font-size: 1.25rem;
+  color: var(--color-black);
+  font-weight: 700;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.cardValue:hover {
+  color: var(--color-gold);
+}
+
+/* ===== DROITE : LOCALISATION ===== */
+.localisation {
+  align-items: stretch;
+}
+
+.mapWrapper {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex: 1;
+  min-height: 240px;
+  width: 100%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  min-height: 240px;
+}
+
+/* Bouton WA pleine largeur dans la carte */
+.waBtn {
+  width: 100%;
+  text-align: center;
+  padding: 14px 20px;
+}
+
+/* Bouton WA pleine largeur dans la carte */
+.waBtn {
+  width: 100%;
+  text-align: center;
+  padding: 14px 20px;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coordonnees,
+  .localisation {
+    padding: var(--space-lg);
+  }
+}
+

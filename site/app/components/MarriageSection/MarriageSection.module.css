@@ -1,0 +1,219 @@
+.section {
+  padding: var(--space-3xl) 0 var(--space-3xl);
+  background: var(--color-cream);
+  overflow: hidden;
+}
+
+/* ===== CAROUSEL ===== */
+
+/* Conteneur aligné sur les bordures du conteneur principal */
+.carouselOuter {
+  position: relative;
+  max-width: var(--container-max);
+  margin: var(--space-3xl) auto 0;
+  overflow: hidden;
+  padding: 1rem 0;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
+
+.grabbing * {
+  pointer-events: none;
+}
+
+/* Fondu gauche — aligné sur la bordure du conteneur */
+.carouselOuter::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  background: linear-gradient(
+    90deg,
+    var(--color-cream) 0%,
+    rgba(250, 247, 242, 0.85) 40%,
+    transparent 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Fondu droit — aligné sur la bordure du conteneur */
+.carouselOuter::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  background: linear-gradient(
+    270deg,
+    var(--color-cream) 0%,
+    rgba(250, 247, 242, 0.85) 40%,
+    transparent 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  will-change: transform;
+}
+
+
+
+.marriageCard {
+  flex: 0 0 300px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.marriageCard:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-xl);
+}
+
+.marriageImage {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.marriageCard:hover .marriageImage {
+  transform: scale(1.08);
+}
+
+.marriageOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(26, 26, 26, 0.4) 100%
+  );
+  transition: background var(--transition-base);
+}
+
+.marriageCard:hover .marriageOverlay {
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(200, 169, 97, 0.2) 70%,
+    rgba(26, 26, 26, 0.5) 100%
+  );
+}
+
+.goldBadge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+
+.marriageCta {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  opacity: 0;
+  z-index: 3;
+  white-space: nowrap;
+  background: rgba(200, 169, 97, 0.92);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.marriageCard:hover .marriageCta {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== STATS ===== */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4xl);
+  margin-top: var(--space-3xl);
+}
+
+.stat {
+  text-align: center;
+}
+
+.statNumber {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-gray);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ctaRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+}
+
+@media (max-width: 768px) {
+  .ctaRow :global(.btn) {
+    padding: 10px 20px;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .marriageCard {
+    flex: 0 0 240px;
+  }
+
+  .carouselOuter::before,
+  .carouselOuter::after {
+    width: 60px;
+  }
+
+  .stats {
+    gap: var(--space-2xl);
+    flex-wrap: nowrap;
+  }
+}
