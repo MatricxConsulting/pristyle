@@ -107,11 +107,15 @@
 
 @media (max-width: 600px) {
   .footerContent {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   
   .brand {
-    grid-column: span 1;
+    grid-column: span 2;
+  }
+
+  .footerContent > div:last-child {
+    grid-column: span 2;
   }
   
   .footerBottom {
