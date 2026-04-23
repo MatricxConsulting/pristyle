@@ -1,30 +1,17 @@
-import { getCollectionSubcategories, getSubcategoryProducts } from '../../lib/data';
-import CollectionLayout from '../components/CollectionLayout/CollectionLayout';
+import { redirect } from 'next/navigation';
+import { getCollectionSubcategories } from '../../lib/data';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
 
 export const metadata = {
-  title: 'Tenues Mariage | PriStyle',
-  description: 'Découvrez nos tenues de mariage africaines sur mesure : robes, boubous et ensembles pour votre grand jour.',
+  title: 'Tenues Mariage Africain Sur Mesure | PriStyle',
+  description: 'Robes de mariée africaines, boubous cérémonie et tenues de mariage sur mesure. PriStyle, couturière à Douala, Cameroun.',
+  alternates: { canonical: `${SITE_URL}/mariage` },
 };
 
-export default async function MariagePage({ searchParams }) {
-  const params = await searchParams;
-
+export default async function MariagePage() {
   const subcategories = await getCollectionSubcategories('tenue-mariage');
-  const selectedCat = params?.cat || subcategories[0]?.slug || '';
-  const page = Math.max(1, parseInt(params?.page || '1', 10));
-
-  const { products, total } = await getSubcategoryProducts(selectedCat, page, 18);
-
-  return (
-    <CollectionLayout
-      gender="mariage"
-      title="Tenues Mariage"
-      subcategories={subcategories}
-      selectedCat={selectedCat}
-      products={products}
-      total={total}
-      page={page}
-      limit={18}
-    />
-  );
+  const first = subcategories[0]?.slug;
+  if (first) redirect(`/mariage/${first}`);
+  redirect('/');
 }

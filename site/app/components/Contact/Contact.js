@@ -1,4 +1,5 @@
 import styles from "./Contact.module.css";
+import MapImage from "./MapImage";
 
 const WA_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Bonjour, je suis intéressé(e) par vos créations PriStyle')}`;
@@ -46,13 +47,7 @@ export default function Contact() {
             <h3 className={styles.colTitle}>Notre localisation</h3>
 
             <div className={styles.mapWrapper}>
-              <iframe
-                src="https://maps.google.com/maps?q=Makepe+BM,+Douala,+Cameroun&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                className={styles.map}
-                loading="lazy"
-                title="Localisation PriStyle"
-              />
-
+              <MapImage />
             </div>
           </div>
         </div>

@@ -73,8 +73,38 @@ export default async function SharePage({ params }) {
   const waMsg = encodeURIComponent(`Bonjour, je suis intéressé(e) par ce modèle PriStyle : ${shareUrl}`);
   const waLink = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
 
+  const productTitle = `Modèle PriStyle – ${collectionLabel}`;
+  const productDescription = 'Tenues africaines sur mesure, livrées partout. Commandez sur WhatsApp.';
+
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: productTitle,
+    description: productDescription,
+    image: imageUrl,
+    brand: { '@type': 'Brand', name: 'PriStyle' },
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'XAF',
+      seller: { '@type': 'LocalBusiness', name: 'PriStyle', address: { '@type': 'PostalAddress', addressLocality: 'Douala', addressCountry: 'CM' } },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: collectionLabel, item: `${SITE_URL}${collectionHref}` },
+      { '@type': 'ListItem', position: 3, name: productTitle, item: shareUrl },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <style>{`
         .ps-product-page {
           min-height: 100vh;
@@ -198,7 +228,7 @@ export default async function SharePage({ params }) {
             />
           </div>
           <div className="ps-product-body">
-            <span className="ps-product-label">PriStyle — Sur mesure</span>
+            <span className="ps-product-label">PriStyle | Sur mesure</span>
             <h1 className="ps-product-title">Ce modèle vous intéresse ?</h1>
             <p className="ps-product-desc">
               Commandez sur mesure directement via WhatsApp. Livraison partout au Cameroun et à l&apos;international.

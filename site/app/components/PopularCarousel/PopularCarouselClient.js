@@ -35,9 +35,11 @@ export default function PopularCarouselClient({ items }) {
   const dragStartPosRef = useRef(0);
   const hasDraggedRef = useRef(false);
   const resumeTimerRef = useRef(null);
+  const isVisibleRef = useRef(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const shuffled = shuffleArray(items);
+    const shuffled = shuffleArray(items).slice(0, 16);
     setCarouselItems([...shuffled, ...shuffled]);
   }, [items]);
 
@@ -47,6 +49,7 @@ export default function PopularCarouselClient({ items }) {
     let lastTs = null;
 
     function tick(ts) {
+      if (!isVisibleRef.current) { lastTs = null; rafId = requestAnimationFrame(tick); return; }
       if (!isDraggingRef.current && trackRef.current) {
         if (lastTs !== null) {
           const dt = Math.min((ts - lastTs) / 1000, 0.1);
@@ -57,15 +60,22 @@ export default function PopularCarouselClient({ items }) {
         }
         lastTs = ts;
       } else {
-        lastTs = null; // reset pour éviter un saut à la reprise
+        lastTs = null;
       }
       rafId = requestAnimationFrame(tick);
     }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0.1 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
 
     rafId = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(resumeTimerRef.current);
+      observer.disconnect();
     };
   }, [carouselItems]);
 
@@ -118,6 +128,7 @@ export default function PopularCarouselClient({ items }) {
   return (
     <>
     <div
+      ref={containerRef}
       className={`${styles.carouselContainer}${grabbing ? ` ${styles.grabbing}` : ""}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

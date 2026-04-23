@@ -50,6 +50,14 @@
   line-height: 1.1;
 }
 
+.seoText {
+  font-size: 0.82rem;
+  color: var(--color-gray);
+  line-height: 1.6;
+  margin-top: 6px;
+  max-width: 600px;
+}
+
 /* ===== TWO-COLUMN LAYOUT ===== */
 .layout {
   display: grid;
@@ -159,7 +167,7 @@
 }
 
 /* Arrêter l'animation une fois l'image chargée */
-.bentoImgWrap:has(img[data-loaded]) {
+.bentoImgWrap[data-loaded] {
   animation: none;
   background: none;
 }

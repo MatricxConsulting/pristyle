@@ -1,9 +1,18 @@
 import Image from "next/image";
 import styles from "./APropos.module.css";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
+
 export const metadata = {
-  title: "À propos | PriStyle",
-  description: "Découvrez l'histoire de PriStyle, notre passion pour la mode africaine et notre engagement pour la haute couture sur mesure.",
+  title: "À propos de PriStyle | Couturière Africaine à Douala",
+  description: "Découvrez l'histoire de PriStyle, couturière africaine basée à Douala, Cameroun. Plus de 10 ans de passion pour la mode wax et la haute couture africaine sur mesure.",
+  alternates: { canonical: `${SITE_URL}/a-propos` },
+  openGraph: {
+    title: "À propos de PriStyle | Couturière Africaine à Douala",
+    description: "Découvrez l'histoire de PriStyle, couturière africaine basée à Douala, Cameroun. Plus de 10 ans de passion pour la mode wax et la haute couture africaine sur mesure.",
+    url: `${SITE_URL}/a-propos`,
+    siteName: 'PriStyle',
+  },
 };
 
 export default function APropos() {

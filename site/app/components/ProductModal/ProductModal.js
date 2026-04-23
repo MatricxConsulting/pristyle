@@ -32,25 +32,38 @@ export default function ProductModal({ src, onClose }) {
   const rafRef = useRef(null);
   const targetRef = useRef({ rx: 0, ry: 0 });
   const currentRef = useRef({ rx: 0, ry: 0 });
+  const isMovingRef = useRef(false);
+  const idleTimerRef = useRef(null);
 
   const waLink = buildWaLink(src);
 
-  /* --- Animation loop (smooth lerp) --- */
-  const animate = useCallback(() => {
-    const t = targetRef.current;
-    const c = currentRef.current;
-    c.rx += (t.rx - c.rx) * 0.12;
-    c.ry += (t.ry - c.ry) * 0.12;
-    if (cardRef.current) {
-      cardRef.current.style.transform = `perspective(900px) rotateX(${c.rx}deg) rotateY(${c.ry}deg) scale3d(1.02,1.02,1.02)`;
+  /* --- Animation loop (smooth lerp) — tourne seulement si la souris bouge --- */
+  const startRaf = useCallback(() => {
+    if (rafRef.current) return;
+    function animate() {
+      const t = targetRef.current;
+      const c = currentRef.current;
+      c.rx += (t.rx - c.rx) * 0.12;
+      c.ry += (t.ry - c.ry) * 0.12;
+      if (cardRef.current) {
+        cardRef.current.style.transform = `perspective(900px) rotateX(${c.rx}deg) rotateY(${c.ry}deg) scale3d(1.02,1.02,1.02)`;
+      }
+      // Arrêter le rAF quand la convergence est suffisante
+      if (Math.abs(t.rx - c.rx) < 0.01 && Math.abs(t.ry - c.ry) < 0.01 && !isMovingRef.current) {
+        rafRef.current = null;
+        return;
+      }
+      rafRef.current = requestAnimationFrame(animate);
     }
     rafRef.current = requestAnimationFrame(animate);
   }, []);
 
   useEffect(() => {
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [animate]);
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      clearTimeout(idleTimerRef.current);
+    };
+  }, []);
 
   /* --- Mouse tilt --- */
   function onMouseMove(e) {
@@ -61,10 +74,16 @@ export default function ProductModal({ src, onClose }) {
     const rx = -((y / rect.height) - 0.5) * 14;
     const ry = ((x / rect.width) - 0.5) * 14;
     targetRef.current = { rx, ry };
+    isMovingRef.current = true;
+    clearTimeout(idleTimerRef.current);
+    idleTimerRef.current = setTimeout(() => { isMovingRef.current = false; }, 150);
+    startRaf();
   }
 
   function onMouseLeave() {
     targetRef.current = { rx: 0, ry: 0 };
+    isMovingRef.current = false;
+    startRaf();
   }
 
   /* --- Touch tilt --- */
@@ -77,10 +96,16 @@ export default function ProductModal({ src, onClose }) {
     const rx = -((y / rect.height) - 0.5) * 10;
     const ry = ((x / rect.width) - 0.5) * 10;
     targetRef.current = { rx, ry };
+    isMovingRef.current = true;
+    clearTimeout(idleTimerRef.current);
+    idleTimerRef.current = setTimeout(() => { isMovingRef.current = false; }, 150);
+    startRaf();
   }
 
   function onTouchEnd() {
     targetRef.current = { rx: 0, ry: 0 };
+    isMovingRef.current = false;
+    startRaf();
   }
 
   /* --- Close on backdrop click & Escape --- */
@@ -131,7 +156,7 @@ export default function ProductModal({ src, onClose }) {
         <div className={styles.body}>
           <p className={styles.bodyTitle}>Ce modèle vous plaît ?</p>
           <p className={styles.bodyDesc}>
-            Envoyez un message à PriStyle pour le commander sur mesure — taille,
+            Envoyez un message à PriStyle pour le commander sur mesure | taille,
             tissu et délai adaptés à vos besoins.
           </p>
           <a

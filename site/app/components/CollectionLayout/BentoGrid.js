@@ -10,7 +10,7 @@ const ProductModal = dynamic(
   { ssr: false }
 );
 
-export default function BentoGrid({ products }) {
+export default function BentoGrid({ products, subcategoryName = 'Modèle PriStyle' }) {
   const [modalSrc, setModalSrc] = useState(null);
 
   return (
@@ -18,10 +18,17 @@ export default function BentoGrid({ products }) {
       <div className={styles.bentoGrid}>
         {products.map((p, i) => (
           <div key={p.id ?? i} className={styles.bentoCard}>
-            <div className={styles.bentoImgWrap}>
+            <div
+              className={styles.bentoImgWrap}
+              ref={el => {
+                // Marquer le wrapper comme chargé dès que le composant est monté côté client
+                // (les images eagerly chargées sont déjà dans le cache)
+                if (el && i < 2) el.dataset.loaded = '1';
+              }}
+            >
               <Image
                 src={p.src}
-                alt="Modèle PriStyle"
+                alt={`${subcategoryName} wax sur mesure – modèle ${i + 1} | PriStyle Douala`}
                 width={600}
                 height={800}
                 className={styles.bentoImg}
@@ -30,6 +37,10 @@ export default function BentoGrid({ products }) {
                 priority={i === 0}
                 quality={68}
                 placeholder="empty"
+                onLoad={e => {
+                  const wrap = e.currentTarget.closest(`.${styles.bentoImgWrap}`);
+                  if (wrap) wrap.dataset.loaded = '1';
+                }}
               />
             </div>
             <div className={styles.bentoOverlay}>

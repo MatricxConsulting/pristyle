@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className={styles.navContent}>
           <Link href="/" className={styles.logo} id="nav-logo">
             <Image
-              src={scrolled ? "/images/logos/logotextonly.png" : "/images/logos/logoimagetexte.png"}
+              src={scrolled ? "/images/logos/logotextonly.webp" : "/images/logos/logoimagetexte.webp"}
               alt="Sublime Wax"
               width={256}
               height={96}

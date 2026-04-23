@@ -5,7 +5,7 @@ import { getCategoryCardsData } from "@/lib/data";
 function CategoryCard({ title, image1, image2, count, slug, gender, priority }) {
   return (
     <a
-      href={`/${gender}?cat=${slug}&page=1`}
+      href={`/${gender}/${slug}`}
       className={`${styles.card} reveal`}
       id={`category-card-${slug}`}
     >
@@ -20,7 +20,7 @@ function CategoryCard({ title, image1, image2, count, slug, gender, priority }) 
         />
         <Image
           src={image2}
-          alt={`${title.replace("\n", " ")} — vue alternative`}
+          alt={`${title.replace("\n", " ")} | vue alternative`}
           fill
           className={styles.cardImageSecondary}
           sizes="(max-width: 600px) 50vw, (max-width: 1024px) 50vw, 25vw"
@@ -61,7 +61,7 @@ export default async function CategoryCards() {
           </div>
           <div className={styles.sectionDivider} />
           <p className={styles.sectionSubtitleSide}>
-            Robes, boubous, jupes et vestes — l&apos;élégance africaine réinventée
+            Robes, boubous, jupes et vestes | l&apos;élégance africaine réinventée
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default async function CategoryCards() {
           </div>
           <div className={styles.sectionDivider} />
           <p className={styles.sectionSubtitleSide}>
-            Boubous, ensembles raffinés et chemises wax — l&apos;art du style masculin
+            Boubous, ensembles raffinés et chemises wax | l&apos;art du style masculin
           </p>
         </div>
 

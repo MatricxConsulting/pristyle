@@ -10,7 +10,7 @@ export default function About() {
             <div className={styles.imageWrapper}>
               <Image
                 src="/images/categories/robes-1.webp"
-                alt="Atelier Sublime Wax — confection artisanale"
+                alt="Atelier Sublime Wax | confection artisanale"
                 fill
                 className={styles.aboutImage}
                 sizes="(max-width: 900px) 50vw, 25vw"

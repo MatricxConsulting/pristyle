@@ -7,7 +7,7 @@ export default function Hero() {
       <div className={styles.heroImageWrapper}>
         <Image
           src="/images/hero/hero.webp"
-          alt="Sublime Wax — Haute Couture Africaine"
+          alt="Sublime Wax | Haute Couture Africaine"
           fill
           priority
           className={styles.heroImage}

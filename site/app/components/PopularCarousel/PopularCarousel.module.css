@@ -69,6 +69,10 @@
   will-change: transform;
 }
 
+@media (max-width: 480px) {
+  .carouselTrack { will-change: auto; }
+}
+
 .carouselItem {
   width: 320px;
   flex-shrink: 0;

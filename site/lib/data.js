@@ -46,7 +46,7 @@ export async function getCategoryCardsData(categorySlug) {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    const image1 = shuffled.length > 0 ? STORAGE_URL + shuffled[0] : '/images/logos/logoimageonly.png';
+    const image1 = shuffled.length > 0 ? STORAGE_URL + shuffled[0] : '/images/logos/logoimageonly.webp';
     const image2 = shuffled.length > 1 ? STORAGE_URL + shuffled[1] : image1;
 
     const words = sub.name.split(' ');

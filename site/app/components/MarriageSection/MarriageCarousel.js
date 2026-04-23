@@ -35,9 +35,11 @@ export default function MarriageCarousel({ allImages }) {
   const dragStartPosRef = useRef(0);
   const hasDraggedRef = useRef(false);
   const resumeTimerRef = useRef(null);
+  const isVisibleRef = useRef(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const picked = shuffleAndPick(allImages, 50);
+    const picked = shuffleAndPick(allImages, 16);
     setItems([...picked, ...picked]);
   }, [allImages]);
 
@@ -47,6 +49,7 @@ export default function MarriageCarousel({ allImages }) {
     let lastTs = null;
 
     function tick(ts) {
+      if (!isVisibleRef.current) { lastTs = null; rafId = requestAnimationFrame(tick); return; }
       if (!isDraggingRef.current && trackRef.current) {
         if (lastTs !== null) {
           const dt = Math.min((ts - lastTs) / 1000, 0.1);
@@ -62,10 +65,17 @@ export default function MarriageCarousel({ allImages }) {
       rafId = requestAnimationFrame(tick);
     }
 
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0.1 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+
     rafId = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(resumeTimerRef.current);
+      observer.disconnect();
     };
   }, [items]);
 
@@ -116,6 +126,7 @@ export default function MarriageCarousel({ allImages }) {
   return (
     <>
     <div
+      ref={containerRef}
       className={`${styles.carouselOuter}${grabbing ? ` ${styles.grabbing}` : ""}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

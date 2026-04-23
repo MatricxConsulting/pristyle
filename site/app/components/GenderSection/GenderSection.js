@@ -17,7 +17,7 @@ export default function GenderSection() {
           <div className={styles.cardImageWrapper}>
             <Image
               src="/images/genre/homme.webp"
-              alt="Collection Homme — Mode africaine wax"
+              alt="Collection Homme | Mode africaine wax"
               fill
               priority
               className={styles.cardImage}
@@ -35,7 +35,7 @@ export default function GenderSection() {
           <div className={styles.cardImageWrapper}>
             <Image
               src="/images/genre/femme.webp"
-              alt="Collection Femme — Mode africaine wax"
+              alt="Collection Femme | Mode africaine wax"
               fill
               priority
               className={styles.cardImage}

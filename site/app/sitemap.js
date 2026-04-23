@@ -1,7 +1,9 @@
-export default function sitemap() {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pristyle.cm';
+import { getCollectionSubcategories } from '@/lib/data';
 
-  return [
+export default async function sitemap() {
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
+
+  const staticRoutes = [
     {
       url: base,
       lastModified: new Date(),
@@ -33,4 +35,30 @@ export default function sitemap() {
       priority: 0.7,
     },
   ];
+
+  let subcatRoutes = [];
+  try {
+    const [femmeSubcats, hommeSubcats] = await Promise.all([
+      getCollectionSubcategories('femme'),
+      getCollectionSubcategories('homme'),
+    ]);
+    subcatRoutes = [
+      ...femmeSubcats.map(s => ({
+        url: `${base}/femme/${s.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      })),
+      ...hommeSubcats.map(s => ({
+        url: `${base}/homme/${s.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      })),
+    ];
+  } catch {
+    // Supabase indisponible au build : on se contente des routes statiques
+  }
+
+  return [...staticRoutes, ...subcatRoutes];
 }

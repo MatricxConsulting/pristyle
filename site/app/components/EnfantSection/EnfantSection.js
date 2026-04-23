@@ -18,7 +18,7 @@ export default async function EnfantSection() {
         <span className="section-label">Pour les petits</span>
         <h2 className="section-title">Collection Enfant</h2>
         <p className="section-subtitle center">
-          D&apos;adorables tenues wax pour les plus jeunes — le style africain
+          D&apos;adorables tenues wax pour les plus jeunes | le style africain
           dès le plus jeune âge
         </p>
       </div>

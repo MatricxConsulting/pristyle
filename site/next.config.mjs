@@ -36,6 +36,35 @@ const nextConfig = {
   },
   // Compression gzip/brotli des réponses HTML/JSON
   compress: true,
+  // Redirections 301 : anciennes URLs ?cat= → nouvelles routes dédiées
+  async redirects() {
+    return [
+      {
+        source: '/femme',
+        has: [{ type: 'query', key: 'cat', value: '(?<slug>.+)' }],
+        destination: '/femme/:slug',
+        permanent: true,
+      },
+      {
+        source: '/homme',
+        has: [{ type: 'query', key: 'cat', value: '(?<slug>.+)' }],
+        destination: '/homme/:slug',
+        permanent: true,
+      },
+      {
+        source: '/mariage',
+        has: [{ type: 'query', key: 'cat', value: '(?<slug>.+)' }],
+        destination: '/mariage/:slug',
+        permanent: true,
+      },
+      {
+        source: '/enfant',
+        has: [{ type: 'query', key: 'cat', value: '(?<slug>.+)' }],
+        destination: '/enfant/:slug',
+        permanent: true,
+      },
+    ];
+  },
   // Headers de cache agressifs pour les assets statiques
   async headers() {
     return [

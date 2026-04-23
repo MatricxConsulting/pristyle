@@ -8,31 +8,31 @@ import { Analytics } from "@vercel/analytics/react";
 // Self-hosted via Next.js → zéro round-trip réseau externe, préchargé automatiquement
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "600", "700", "900"],
+  style: ["normal"],
   variable: "--font-display",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "600", "700"],
+  style: ["normal"],
   variable: "--font-accent",
   display: "swap",
 });
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pristyle.cm'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app'),
   title: {
-    default: "PriStyle | Couturière Référence au Cameroun — Mode Wax Sur Mesure",
+    default: "PriStyle | Couturière Référence au Cameroun | Mode Wax Sur Mesure",
     template: "%s | PriStyle",
   },
   description:
@@ -54,19 +54,19 @@ export const metadata = {
     "meilleure couturière Afrique",
   ],
   openGraph: {
-    title: "PriStyle | Couturière Référence au Cameroun — Mode Wax Sur Mesure",
+    title: "PriStyle | Couturière Référence au Cameroun | Mode Wax Sur Mesure",
     description:
       "La couturière référence du Cameroun. Tenues wax sur mesure confectionnées à Douala, livrées partout en Afrique et dans le monde.",
     type: "website",
     locale: "fr_FR",
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pristyle.cm',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app',
     siteName: "PriStyle",
     images: [
       {
-        url: "/images/logos/logoimagetexte.png",
+        url: "/images/logos/logoimagetexte.webp",
         width: 1200,
         height: 630,
-        alt: "PriStyle — Haute Couture Africaine Cameroun",
+        alt: "PriStyle | Haute Couture Africaine Cameroun",
       },
     ],
   },
@@ -75,10 +75,10 @@ export const metadata = {
     title: "PriStyle | Couturière Référence au Cameroun",
     description:
       "La référence du sur-mesure africain à Douala. Robes wax, boubous, tenues de mariage.",
-    images: ["/images/logos/logoimagetexte.png"],
+    images: ["/images/logos/logoimagetexte.webp"],
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pristyle.cm',
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app',
   },
   robots: {
     index: true,
@@ -109,9 +109,9 @@ export default function RootLayout({ children }) {
               name: "PriStyle",
               description:
                 "Couturière de référence au Cameroun. Haute couture africaine sur mesure à Douala : robes wax, boubous, tenues de mariage, ensembles homme & femme.",
-              url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.pristyle.cm",
-              logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.pristyle.cm"}/images/logos/logoimagetexte.png`,
-              image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.pristyle.cm"}/images/logos/logoimagetexte.png`,
+              url: process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app",
+              logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/logoimagetexte.webp`,
+              image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/logoimagetexte.webp`,
               telephone: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
                 ? `+${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`
                 : "+33644814218",

@@ -11,10 +11,14 @@ export default function CollectionLayout({
   total,
   page,
   limit,
+  seoText,
 }) {
   const remaining = Math.max(0, total - page * limit);
   const hasNext = remaining > 0;
   const hasPrev = page > 1;
+
+  const currentSubcat = subcategories.find(s => s.slug === selectedCat);
+  const subcategoryName = currentSubcat?.name || title;
 
   return (
     <main className={styles.main}>
@@ -27,6 +31,7 @@ export default function CollectionLayout({
         </div>
         <div className={styles.splitHeaderRight}>
           <h1 className={styles.pageTitle}>{title}</h1>
+          {seoText && <p className={styles.seoText}>{seoText}</p>}
         </div>
       </div>
 
@@ -38,7 +43,7 @@ export default function CollectionLayout({
             {subcategories.map(sub => (
               <Link
                 key={sub.slug}
-                href={`/${gender}?cat=${sub.slug}&page=1`}
+                href={`/${gender}/${sub.slug}`}
                 className={`${styles.catLink} ${selectedCat === sub.slug ? styles.catLinkActive : ''}`}
               >
                 <span>{sub.name}</span>
@@ -55,16 +60,16 @@ export default function CollectionLayout({
             ) : (
               <>
                 <p className={styles.gridMeta}>
-                  {total} modèle{total > 1 ? 's' : ''} — page {page}
+                  {total} modèle{total > 1 ? 's' : ''} | page {page}
                 </p>
 
-                <BentoGrid products={products} />
+                <BentoGrid products={products} subcategoryName={subcategoryName} />
 
                 {(hasPrev || hasNext) && (
                   <div className={styles.pagination}>
                     {hasPrev && (
                       <Link
-                        href={`/${gender}?cat=${selectedCat}&page=${page - 1}`}
+                        href={`/${gender}/${selectedCat}?page=${page - 1}`}
                         className={styles.paginationBtn}
                       >
                         ← Précédent
@@ -72,7 +77,7 @@ export default function CollectionLayout({
                     )}
                     {hasNext && (
                       <Link
-                        href={`/${gender}?cat=${selectedCat}&page=${page + 1}`}
+                        href={`/${gender}/${selectedCat}?page=${page + 1}`}
                         className={styles.paginationBtn}
                       >
                         Suivant ({remaining} restant{remaining > 1 ? 's' : ''}) →

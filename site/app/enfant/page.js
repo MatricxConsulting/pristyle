@@ -1,30 +1,17 @@
-import { getCollectionSubcategories, getSubcategoryProducts } from '../../lib/data';
-import CollectionLayout from '../components/CollectionLayout/CollectionLayout';
+import { redirect } from 'next/navigation';
+import { getCollectionSubcategories } from '../../lib/data';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
 
 export const metadata = {
-  title: 'Tenues Enfant | PriStyle',
-  description: 'Découvrez nos tenues africaines pour enfant, confectionnées sur mesure en tissu wax.',
+  title: 'Tenues Enfant Wax Sur Mesure | PriStyle',
+  description: 'Tenues africaines pour enfant en tissu wax, confectionnées sur mesure à Douala, Cameroun. Qualité artisanale, livraison internationale.',
+  alternates: { canonical: `${SITE_URL}/enfant` },
 };
 
-export default async function EnfantPage({ searchParams }) {
-  const params = await searchParams;
-
+export default async function EnfantPage() {
   const subcategories = await getCollectionSubcategories('enfant');
-  const selectedCat = params?.cat || subcategories[0]?.slug || '';
-  const page = Math.max(1, parseInt(params?.page || '1', 10));
-
-  const { products, total } = await getSubcategoryProducts(selectedCat, page, 18);
-
-  return (
-    <CollectionLayout
-      gender="enfant"
-      title="Collection Enfant"
-      subcategories={subcategories}
-      selectedCat={selectedCat}
-      products={products}
-      total={total}
-      page={page}
-      limit={18}
-    />
-  );
+  const first = subcategories[0]?.slug;
+  if (first) redirect(`/enfant/${first}`);
+  redirect('/');
 }

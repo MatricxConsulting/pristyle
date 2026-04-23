@@ -56,7 +56,7 @@ export default function EnfantGrid({ allPairs }) {
             {/* Image de face arrière — apparaît au hover */}
             <Image
               src={pair.back}
-              alt="Tenue enfant wax — autre angle"
+              alt="Tenue enfant wax | autre angle"
               fill
               className={`${styles.cardImage} ${styles.cardImageBack} ${showBack ? styles.cardImageBackVisible : ""}`}
               sizes="(max-width: 600px) 90vw, 350px"

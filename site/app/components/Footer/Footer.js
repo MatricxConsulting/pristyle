@@ -18,39 +18,42 @@ export default function Footer() {
         <div>
           <h4 className={styles.footerTitle}>Collections</h4>
           <div className={styles.footerLinks}>
-            <a href="#femme" className={styles.footerLink}>
+            <Link href="/femme" className={styles.footerLink}>
               Collection Femme
-            </a>
-            <a href="#homme" className={styles.footerLink}>
+            </Link>
+            <Link href="/homme" className={styles.footerLink}>
               Collection Homme
-            </a>
-            <a href="#mariage" className={styles.footerLink}>
+            </Link>
+            <Link href="/mariage" className={styles.footerLink}>
               Tenues Mariage
-            </a>
-            <a href="#" className={styles.footerLink}>
+            </Link>
+            <Link href="/enfant" className={styles.footerLink}>
               Collection Enfant
-            </a>
+            </Link>
           </div>
         </div>
 
         <div>
           <h4 className={styles.footerTitle}>Catégories</h4>
           <div className={styles.footerLinks}>
-            <a href="#" className={styles.footerLink}>
-              Boubous
-            </a>
-            <a href="#" className={styles.footerLink}>
+            <Link href="/femme/boubou-femme" className={styles.footerLink}>
+              Boubous Femme
+            </Link>
+            <Link href="/femme/robes-africaines" className={styles.footerLink}>
               Robes Africaines
-            </a>
-            <a href="#" className={styles.footerLink}>
+            </Link>
+            <Link href="/homme/boubou-homme" className={styles.footerLink}>
+              Boubous Homme
+            </Link>
+            <Link href="/homme/ensemble-homme" className={styles.footerLink}>
               Ensembles
-            </a>
-            <a href="#" className={styles.footerLink}>
-              Jupes & Hauts
-            </a>
-            <a href="#" className={styles.footerLink}>
-              Vestes & Bombers
-            </a>
+            </Link>
+            <Link href="/femme/jupes" className={styles.footerLink}>
+              Jupes &amp; Hauts
+            </Link>
+            <Link href="/femme/vestes-bombers" className={styles.footerLink}>
+              Vestes &amp; Bombers
+            </Link>
           </div>
         </div>
 
@@ -75,7 +78,7 @@ export default function Footer() {
 
       <div className={styles.footerBottom}>
         <span className={styles.copyright}>
-          © {year} PriStyle — Tous droits réservés
+          © {year} PriStyle | Tous droits réservés
         </span>
         <span className={styles.footerCredit}>
           Powered by{" "}
