@@ -52,12 +52,23 @@ export default function Navbar() {
       >
         <div className={styles.navContent}>
           <Link href="/" className={styles.logo} id="nav-logo">
+            {/* Logo mobile */}
+            <Image
+              src="/images/logos/logoimagetexte.webp"
+              alt="Sublime Wax"
+              width={256}
+              height={96}
+              className={`${styles.logoImage} ${styles.logoMobile}`}
+              style={{ width: "auto" }}
+              priority
+            />
+            {/* Logo desktop */}
             <Image
               src={scrolled ? "/images/logos/logotextonly.webp" : "/images/logos/logoimagetexte.webp"}
               alt="Sublime Wax"
               width={256}
               height={96}
-              className={styles.logoImage}
+              className={`${styles.logoImage} ${styles.logoDesktop}`}
               style={{ width: "auto" }}
               priority
             />

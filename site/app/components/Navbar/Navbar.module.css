@@ -32,7 +32,7 @@
 }
 
 .logoImage {
-  height: 130px;
+  height: 156px;
   width: auto;
   /* Marges négatives : le logo déborde sans gonfler la hauteur du header */
   margin-top: -15px;
@@ -40,8 +40,16 @@
   transition: height var(--transition-base), margin var(--transition-base), filter var(--transition-base);
 }
 
+.logoMobile {
+  display: none;
+}
+
+.logoDesktop {
+  display: block;
+}
+
 .navbar.scrolled .logoImage {
-  height: 52px;
+  height: 62px;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -146,6 +154,18 @@
 
 /* Mobile menu */
 @media (max-width: 900px) {
+  .logoMobile {
+    display: block;
+    height: 104px;
+    margin-top: 0;
+    margin-bottom: 0;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+  }
+
+  .logoDesktop {
+    display: none;
+  }
+
   .hamburger {
     display: flex;
   }
