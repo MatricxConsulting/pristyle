@@ -1,8 +1,12 @@
 import { supabase } from './supabase';
+import { unstable_cache } from 'next/cache';
 
 const STORAGE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL + '/storage/v1/object/public/catalog-media/';
 
-export async function getCategoryCardsData(categorySlug) {
+// Résultat mis en cache 1h : le shuffle reste stable entre les navigations,
+// évitant les URLs changeantes qui causent des images blanches au retour sur la page.
+export const getCategoryCardsData = unstable_cache(
+  async function _getCategoryCardsData(categorySlug) {
   const { data: category, error: catError } = await supabase
     .from('categories')
     .select('id')
@@ -63,7 +67,10 @@ export async function getCategoryCardsData(categorySlug) {
       count
     };
   }).filter(cat => cat.count > 0);
-}
+  },
+  ['category-cards-data'],
+  { revalidate: 3600 } // Stable 1h — mêmes URLs → next/image déjà en cache
+);
 
 export async function getEnfantPairs() {
   const { data: category, error: catError } = await supabase

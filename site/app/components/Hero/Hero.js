@@ -10,6 +10,7 @@ export default function Hero() {
           alt="Sublime Wax | Haute Couture Africaine"
           fill
           priority
+          fetchPriority="high"
           className={styles.heroImage}
           sizes="100vw"
         />
