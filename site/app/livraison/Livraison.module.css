@@ -1,5 +1,5 @@
 .pageWrapper {
-  padding-top: 120px;
+  padding-top: 60px;
   min-height: calc(100vh - 300px);
   background-color: var(--color-cream);
 }
@@ -12,11 +12,6 @@
 .contentWrapper {
   max-width: 800px;
   margin: 0 auto;
-  background: var(--color-white);
-  padding: var(--space-3xl);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-gray-border);
 }
 
 .section {
@@ -39,30 +34,32 @@
 
 .section h2 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--color-gold-dark);
   margin-bottom: var(--space-md);
 }
 
 .section p {
   color: var(--color-dark);
-  line-height: 1.8;
-  font-size: 1.05rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
   margin-bottom: var(--space-sm);
 }
 
 .highlightBox {
-  background-color: var(--color-cream-warm);
-  padding: var(--space-lg);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--color-gold);
+  background-color: transparent;
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--color-gold);
+  border-bottom: 1px solid var(--color-gold);
   margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
 .highlightBox p {
   margin: 0;
-  font-weight: 500;
+  font-style: italic;
   color: var(--color-black);
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {

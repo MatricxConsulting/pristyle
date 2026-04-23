@@ -8,7 +8,7 @@ export const metadata = {
 export default function Livraison() {
   return (
     <main className={styles.pageWrapper}>
-      <div className="container section-padding">
+      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
         <header className={`${styles.header} reveal visible`}>
           <span className="section-label">Informations Pratiques</span>
           <h1 className="section-title">Expédition & Livraison</h1>
@@ -20,7 +20,6 @@ export default function Livraison() {
         <div className={`${styles.contentWrapper} reveal-scale visible`}>
           
           <div className={styles.section}>
-            <span className={styles.sectionIcon}>✂️</span>
             <h2>Confection sur mesure</h2>
             <p>
               Chez PriStyle, l'excellence prend du temps. Chaque pièce que nous proposons est 
@@ -34,7 +33,6 @@ export default function Livraison() {
           </div>
 
           <div className={styles.section}>
-            <span className={styles.sectionIcon}>📦</span>
             <h2>Modalités de Livraison</h2>
             <p>
               Une fois votre création terminée dans notre atelier et prête à être portée, 
@@ -54,7 +52,6 @@ export default function Livraison() {
           </div>
 
           <div className={styles.section}>
-            <span className={styles.sectionIcon}>⏱️</span>
             <h2>Délais et Suivi</h2>
             <p>
               Nous confions vos précieuses tenues à des transporteurs fiables pour assurer 

@@ -8,7 +8,7 @@ export const metadata = {
 export default function MentionsLegales() {
   return (
     <main className={styles.pageWrapper}>
-      <div className="container section-padding">
+      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
         <header className={`${styles.header} reveal visible`}>
           <span className="section-label">Informations Juridiques</span>
           <h1 className="section-title">Mentions Légales</h1>
