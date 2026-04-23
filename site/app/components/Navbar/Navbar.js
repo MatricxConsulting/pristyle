@@ -54,7 +54,7 @@ export default function Navbar() {
           <Link href="/" className={styles.logo} id="nav-logo">
             {/* Logo mobile */}
             <Image
-              src="/images/logos/logoimagetexte.webp"
+              src={scrolled ? "/images/logos/logotextonly.webp" : "/images/logos/logoimagetexte.webp"}
               alt="Sublime Wax"
               width={256}
               height={96}
