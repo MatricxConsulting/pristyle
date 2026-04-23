@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: "Femme", href: "/femme" },
   { label: "Homme", href: "/homme" },
   { label: "Mariage", href: "/mariage" },
-  { label: "À propos", href: "#apropos" },
+  { label: "À propos", href: "/a-propos" },
 ];
 
 export default function Navbar() {
@@ -64,17 +64,33 @@ export default function Navbar() {
           </Link>
 
           <div className={`${styles.navLinks} ${menuOpen ? styles.open : ""}`}>
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={styles.navLink}
-                onClick={closeMenu}
-                id={`nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isHashLink = item.href.includes("#");
+              if (isHashLink) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={styles.navLink}
+                    onClick={closeMenu}
+                    id={`nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={styles.navLink}
+                  onClick={closeMenu}
+                  id={`nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <a
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je souhaite vous contacter pour une création PriStyle')}`}
               className={`btn btn-primary ${styles.navCta}`}

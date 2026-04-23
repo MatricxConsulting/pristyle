@@ -91,6 +91,8 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="fr"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${playfairDisplay.variable} ${inter.variable} ${cormorantGaramond.variable}`}
     >
       <head>
@@ -148,7 +150,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <noscript>
           <style>{`.reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1!important;transform:none!important}`}</style>
         </noscript>
