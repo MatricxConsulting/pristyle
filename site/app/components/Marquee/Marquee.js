@@ -1,14 +1,12 @@
 import styles from "./Marquee.module.css";
 
 const MARQUEE_ITEMS = [
-  "Haute Couture Africaine",
-  "Sur Mesure",
-  "Tissu Wax Premium",
-  "Fait Main",
-  "Élégance Authentique",
-  "Création Unique",
-  "Mode Africaine",
-  "Savoir-Faire Artisanal",
+  "Le style qui parle pour toi",
+  "Moderne & Identitaire",
+  "Élégance Africaine",
+  "Accessible à tous",
+  "Excellence Textile",
+  "Mode Mixte Contemporaine",
 ];
 
 export default function Marquee() {

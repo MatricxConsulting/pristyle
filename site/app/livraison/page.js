@@ -20,6 +20,12 @@ export default function Livraison() {
         <div className={`${styles.contentWrapper} reveal-scale visible`}>
           
           <div className={styles.section}>
+            <p style={{ fontStyle: 'italic', fontWeight: '500', marginBottom: '2rem' }}>
+              "Chez PRISTYLE DESIGN, la <strong>fiabilité et l'engagement</strong> sont au cœur de notre relation avec vous. Nous mettons un point d'honneur à respecter nos délais avec rigueur pour vous offrir une expérience client parfaitement fluide."
+            </p>
+          </div>
+          
+          <div className={styles.section}>
             <h2>Confection sur mesure</h2>
             <p>
               Chez PriStyle, l'excellence prend du temps. Chaque pièce que nous proposons est 

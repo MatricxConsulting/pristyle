@@ -10,8 +10,7 @@ export default function Footer() {
         <div className={styles.brand}>
           <div className={styles.logoMark} aria-label="PriStyle">PS</div>
           <p className={styles.brandDesc}>
-            Haute couture africaine sur mesure. Des créations uniques en tissu
-            wax, confectionnées avec passion et savoir-faire artisanal.
+            PRISTYLE DESIGN est une marque de mode mixte qui fusionne la modernité et l’élégance africaine. Le style qui parle pour toi.
           </p>
         </div>
 

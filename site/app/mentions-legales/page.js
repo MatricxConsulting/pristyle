@@ -17,6 +17,12 @@ export default function MentionsLegales() {
         <div className={`${styles.contentWrapper} reveal-scale visible`}>
           
           <div className={styles.section}>
+            <p style={{ fontStyle: 'italic', fontWeight: '500', marginBottom: '2rem' }}>
+              "Parce que l'<strong>expérience client</strong> et la <strong>fiabilité</strong> sont des valeurs fondamentales chez PRISTYLE DESIGN, nous vous présentons ces mentions légales en toute transparence pour une relation de confiance totale."
+            </p>
+          </div>
+          
+          <div className={styles.section}>
             <h2>1. Éditeur du site</h2>
             <p>Le site <strong>PriStyle</strong> est édité par PriStyle.</p>
             <p>

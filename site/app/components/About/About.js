@@ -40,53 +40,58 @@ export default function About() {
 
         <div className={`${styles.textColumn} reveal-right`}>
           <span className="section-label">Notre Histoire</span>
-          <h2 className="section-title">L&apos;Art du Wax,<br />Notre Passion</h2>
+          <h2 className="section-title">L&apos;Élégance Africaine,<br />Sans Effort</h2>
           <p className={styles.description}>
-            Depuis plus de 10 ans, notre atelier donne vie à des créations
-            uniques en tissu wax. Chaque pièce est confectionnée à la main avec
-            les plus beaux tissus importés d&apos;Afrique, alliant tradition
-            ancestrale et design contemporain.
+            PRISTYLE DESIGN est une marque de mode mixte qui fusionne la modernité et l’élégance africaine pour créer des pièces accessibles, stylées et identitaires.
           </p>
-          <p className={styles.description}>
-            Notre mission : sublimer chaque personne avec des vêtements qui
-            racontent une histoire, célèbrent la culture africaine et
-            s&apos;adaptent parfaitement à chaque morphologie grâce au
-            sur-mesure.
+          <p className={styles.description} style={{ fontStyle: "italic", fontWeight: "500", color: "var(--color-black)" }}>
+            &quot;Notre promesse : Le style africain moderne à portée de tous. Soyez stylé sans effort et portez fièrement votre identité.&quot;
           </p>
 
           <div className={styles.features}>
             <div className={styles.feature}>
-              <div className={styles.featureIcon}>✂️</div>
+              <div className={styles.featureIcon}>🌟</div>
               <div className={styles.featureText}>
-                <div className={styles.featureTitle}>100% Sur Mesure</div>
+                <div className={styles.featureTitle}>Excellence Textile</div>
                 <div className={styles.featureDesc}>
-                  Chaque vêtement est confectionné à vos mesures exactes
+                  Des tissus sélectionnés pour garantir élégance, confort et durabilité
+                </div>
+              </div>
+            </div>
+            <div className={styles.feature}>
+              <div className={styles.featureIcon}>🤝</div>
+              <div className={styles.featureText}>
+                <div className={styles.featureTitle}>Fiabilité & Engagement</div>
+                <div className={styles.featureDesc}>
+                  Le respect de nos engagements et de nos délais avec rigueur
+                </div>
+              </div>
+            </div>
+            <div className={styles.feature}>
+              <div className={styles.featureIcon}>✨</div>
+              <div className={styles.featureText}>
+                <div className={styles.featureTitle}>Expérience Client</div>
+                <div className={styles.featureDesc}>
+                  Au cœur de notre démarche pour un service fluide et satisfaisant
                 </div>
               </div>
             </div>
             <div className={styles.feature}>
               <div className={styles.featureIcon}>🌍</div>
               <div className={styles.featureText}>
-                <div className={styles.featureTitle}>Tissus Premium</div>
+                <div className={styles.featureTitle}>Créativité & Identité</div>
                 <div className={styles.featureDesc}>
-                  Les meilleurs wax sélectionnés directement en Afrique
-                </div>
-              </div>
-            </div>
-            <div className={styles.feature}>
-              <div className={styles.featureIcon}>💛</div>
-              <div className={styles.featureText}>
-                <div className={styles.featureTitle}>Fait Main avec Amour</div>
-                <div className={styles.featureDesc}>
-                  Un savoir-faire artisanal transmis de génération en génération
+                  Des créations qui reflètent une identité africaine moderne et assumée
                 </div>
               </div>
             </div>
           </div>
 
           <a
-            href="https://wa.me/33XXXXXXXXXX"
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je souhaite en savoir plus sur votre atelier PriStyle')}`}
             className="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
             id="about-cta"
           >
             Découvrir notre atelier

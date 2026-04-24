@@ -21,17 +21,16 @@ export default function Hero() {
       <div className={styles.heroContent}>
 
         <h1 className={styles.heroTitle}>
-          L&apos;Art du <span className={styles.heroAccent}>Wax</span>
+          Le style qui <span className={styles.heroAccent}>parle</span>
           <br />
-          Sublimé
+          pour toi
         </h1>
         <p className={styles.heroSubtitle}>
-          Haute couture africaine sur mesure · Des créations uniques
-          confectionnées avec passion et savoir-faire artisanal
+          PRISTYLE DESIGN, la marque de mode mixte qui fusionne modernité et élégance africaine. Soyez stylé sans effort, portez fièrement votre identité.
         </p>
         <div className={styles.heroCta}>
           <a href="#populaires" className="btn btn-primary" id="hero-cta-discover">
-            Découvrir nos créations
+            Découvrir la collection
           </a>
           <a
             href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je souhaite commander une tenue sur mesure PriStyle')}`}
