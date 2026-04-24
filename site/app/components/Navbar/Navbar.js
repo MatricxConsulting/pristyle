@@ -8,10 +8,10 @@ import styles from "./Navbar.module.css";
 
 const NAV_ITEMS = [
   { label: "Accueil", href: "/" },
-  { label: "Collections", href: "/#populaires" },
   { label: "Femme", href: "/femme" },
   { label: "Homme", href: "/homme" },
   { label: "Mariage", href: "/mariage" },
+  { label: "Enfant", href: "/enfant" },
   { label: "À propos", href: "/a-propos" },
 ];
 
