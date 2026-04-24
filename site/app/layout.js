@@ -32,11 +32,11 @@ const cormorantGaramond = Cormorant_Garamond({
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app'),
   title: {
-    default: "PriStyle | Couturière Référence au Cameroun | Mode Wax Sur Mesure",
-    template: "%s | PriStyle",
+    default: "PRISTYLE DESIGN | Le style qui parle pour toi",
+    template: "%s | PRISTYLE DESIGN",
   },
   description:
-    "PriStyle, couturière de référence au Cameroun et en Afrique. Tenues africaines wax sur mesure à Douala : robes, boubous, ensembles homme & femme, tenues de mariage. Livraison internationale.",
+    "PRISTYLE DESIGN, la marque de mode mixte qui fusionne modernité et élégance africaine. Soyez stylé sans effort, portez fièrement votre identité.",
   keywords: [
     "couturière Cameroun",
     "mode africaine Cameroun",
@@ -54,13 +54,13 @@ export const metadata = {
     "meilleure couturière Afrique",
   ],
   openGraph: {
-    title: "PriStyle | Couturière Référence au Cameroun | Mode Wax Sur Mesure",
+    title: "PRISTYLE DESIGN | Le style qui parle pour toi",
     description:
-      "La couturière référence du Cameroun. Tenues wax sur mesure confectionnées à Douala, livrées partout en Afrique et dans le monde.",
+      "PRISTYLE DESIGN, la marque de mode mixte qui fusionne modernité et élégance africaine. Soyez stylé sans effort, portez fièrement votre identité.",
     type: "website",
     locale: "fr_FR",
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app',
-    siteName: "PriStyle",
+    siteName: "PRISTYLE DESIGN",
     images: [
       {
         url: "/images/logos/logoimagetexte.webp",
@@ -72,9 +72,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PriStyle | Couturière Référence au Cameroun",
+    title: "PRISTYLE DESIGN | Le style qui parle pour toi",
     description:
-      "La référence du sur-mesure africain à Douala. Robes wax, boubous, tenues de mariage.",
+      "PRISTYLE DESIGN, la marque de mode mixte qui fusionne modernité et élégance africaine. Soyez stylé sans effort, portez fièrement votre identité.",
     images: ["/images/logos/logoimagetexte.webp"],
   },
   alternates: {
@@ -106,9 +106,9 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": ["LocalBusiness", "ClothingStore"],
-              name: "PriStyle",
+              name: "PRISTYLE DESIGN",
               description:
-                "Couturière de référence au Cameroun. Haute couture africaine sur mesure à Douala : robes wax, boubous, tenues de mariage, ensembles homme & femme.",
+                "PRISTYLE DESIGN, marque de mode mixte fusionnant modernité et élégance africaine à Douala. Le style africain moderne à portée de tous.",
               url: process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app",
               logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/logoimagetexte.webp`,
               image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/logoimagetexte.webp`,
