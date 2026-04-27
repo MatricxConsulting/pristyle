@@ -19,19 +19,19 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // Sur les pages de collection, la navbar est TOUJOURS opaque
-  const [scrolled, setScrolled] = useState(!isHome);
+  // scrollPos permet de dériver scrolled instantanément lors des navigations
+  const [scrollPos, setScrollPos] = useState(0);
+  const scrolled = !isHome || scrollPos > 50;
   const [menuOpen, setMenuOpen] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
 
   useEffect(() => {
     if (!isHome) {
-      setScrolled(true);
       setHeroVisible(false);
       return;
     }
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrollPos(window.scrollY);
       setHeroVisible(window.scrollY < window.innerHeight * 0.7);
     };
     handleScroll(); // vérifier au montage
