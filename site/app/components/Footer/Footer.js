@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -8,7 +9,13 @@ export default function Footer() {
     <footer className={styles.footer} id="footer">
       <div className={styles.footerContent}>
         <div className={styles.brand}>
-          <div className={styles.logoMark} aria-label="PriStyle">PS</div>
+          <Image
+            src="/images/logos/pristyle-transparent.webp"
+            alt="PRISTYLE DESIGN"
+            width={1593}
+            height={882}
+            className={styles.footerLogo}
+          />
           <p className={styles.brandDesc}>
             PRISTYLE DESIGN est une marque de mode mixte qui fusionne la modernité et l’élégance africaine. Le style qui parle pour toi.
           </p>
