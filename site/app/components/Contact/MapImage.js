@@ -29,7 +29,7 @@ export default function MapImage() {
         />
       ) : (
         <div className={styles.mapFallback}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8A961" strokeWidth="1.5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8A87E" strokeWidth="1.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
@@ -40,7 +40,7 @@ export default function MapImage() {
       {!failed && (
         <div className={styles.mapPinOverlay}>
           <svg width="22" height="28" viewBox="0 0 24 32" fill="none">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 8.25 12 20 12 20s12-11.75 12-20C24 5.37 18.63 0 12 0z" fill="#C8A961" />
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 8.25 12 20 12 20s12-11.75 12-20C24 5.37 18.63 0 12 0z" fill="#C8A87E" />
             <circle cx="12" cy="12" r="5" fill="white" />
           </svg>
         </div>

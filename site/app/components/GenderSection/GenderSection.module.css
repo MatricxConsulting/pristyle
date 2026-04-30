@@ -97,7 +97,7 @@
 .cardBtn {
   display: inline-block;
   padding: 14px 32px;
-  background: rgba(200, 169, 97, 0.92);
+  background: rgba(200, 168, 126, 0.92);
   color: var(--color-white);
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -113,7 +113,7 @@
 .card:hover .cardBtn {
   background: var(--color-gold);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(200, 169, 97, 0.35);
+  box-shadow: 0 4px 15px rgba(200, 168, 126, 0.35);
 }
 
 .ctaRow {
@@ -124,7 +124,7 @@
 .ctaBtn {
   display: inline-block;
   padding: 14px 32px;
-  background: rgba(200, 169, 97, 0.92);
+  background: rgba(200, 168, 126, 0.92);
   color: var(--color-white);
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -140,7 +140,7 @@
   background: var(--color-gold);
   color: var(--color-white);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(200, 169, 97, 0.35);
+  box-shadow: 0 4px 15px rgba(200, 168, 126, 0.35);
 }
 
 @media (max-width: 768px) {

@@ -111,7 +111,7 @@
 
 .catLinkActive {
   color: var(--color-gold-dark);
-  background: rgba(200, 169, 97, 0.1);
+  background: rgba(200, 168, 126, 0.1);
   font-weight: 600;
 }
 
@@ -203,7 +203,7 @@
 .bentoCta {
   opacity: 0;
   transform: translateY(10px);
-  background: rgba(200, 169, 97, 0.93);
+  background: rgba(200, 168, 126, 0.93);
   color: #fff;
   font-size: 0.7rem;
   font-weight: 700;

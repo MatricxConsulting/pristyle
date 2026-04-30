@@ -117,7 +117,7 @@
   background: linear-gradient(
     180deg,
     transparent 40%,
-    rgba(200, 169, 97, 0.2) 70%,
+    rgba(200, 168, 126, 0.2) 70%,
     rgba(26, 26, 26, 0.5) 100%
   );
 }
@@ -139,7 +139,7 @@
 
 .marriageCta {
   white-space: nowrap;
-  background: rgba(200, 169, 97, 0.92);
+  background: rgba(200, 168, 126, 0.92);
   color: #fff;
   font-size: 0.78rem;
   font-weight: 600;

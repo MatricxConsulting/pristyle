@@ -130,7 +130,7 @@ export default async function SharePage({ params }) {
           gap: 6px;
           transition: color 0.2s;
         }
-        .ps-product-back:hover { color: #A88B3D; }
+        .ps-product-back:hover { color: #957F62; }
         .ps-product-card {
           width: 100%;
           max-width: 560px;
@@ -162,7 +162,7 @@ export default async function SharePage({ params }) {
           font-weight: 700;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #A88B3D;
+          color: #957F62;
         }
         .ps-product-title {
           font-family: 'Playfair Display', Georgia, serif;
@@ -182,7 +182,7 @@ export default async function SharePage({ params }) {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: #C8A961;
+          background: #C8A87E;
           color: #fff;
           font-size: 0.8rem;
           font-weight: 700;
@@ -195,7 +195,7 @@ export default async function SharePage({ params }) {
           white-space: nowrap;
         }
         .ps-product-cta:hover {
-          background: #A88B3D;
+          background: #957F62;
           transform: translateY(-1px);
         }
         .ps-product-see-all {
@@ -204,7 +204,7 @@ export default async function SharePage({ params }) {
           text-decoration: none;
           transition: color 0.2s;
         }
-        .ps-product-see-all:hover { color: #A88B3D; }
+        .ps-product-see-all:hover { color: #957F62; }
         @media (max-width: 480px) {
           .ps-product-page { padding: 72px 12px 40px; }
           .ps-product-body { padding: 18px 16px 22px; gap: 12px; }

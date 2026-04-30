@@ -15,6 +15,18 @@ const NAV_ITEMS = [
   { label: "À propos", href: "/a-propos" },
 ];
 
+const TRANSPARENT_LOGO = {
+  src: "/images/logos/pristyle-transparent.webp",
+  width: 1593,
+  height: 882,
+};
+
+const SCROLLED_LOGO = {
+  src: "/images/logos/logotextonly-transparent.webp",
+  width: 1765,
+  height: 693,
+};
+
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -41,6 +53,7 @@ export default function Navbar() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
+  const logo = scrolled ? SCROLLED_LOGO : TRANSPARENT_LOGO;
 
   return (
     <>
@@ -54,20 +67,20 @@ export default function Navbar() {
           <Link href="/" className={styles.logo} id="nav-logo">
             {/* Logo mobile */}
             <Image
-              src={scrolled ? "/images/logos/logotextonly.webp" : "/images/logos/logoimagetexte.webp"}
-              alt="Sublime Wax"
-              width={256}
-              height={96}
+              src={logo.src}
+              alt="PriStyle Design"
+              width={logo.width}
+              height={logo.height}
               className={`${styles.logoImage} ${styles.logoMobile}`}
               style={{ width: "auto" }}
               priority
             />
             {/* Logo desktop */}
             <Image
-              src={scrolled ? "/images/logos/logotextonly.webp" : "/images/logos/logoimagetexte.webp"}
-              alt="Sublime Wax"
-              width={256}
-              height={96}
+              src={logo.src}
+              alt="PriStyle Design"
+              width={logo.width}
+              height={logo.height}
               className={`${styles.logoImage} ${styles.logoDesktop}`}
               style={{ width: "auto" }}
               priority
