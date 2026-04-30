@@ -63,10 +63,10 @@ export const metadata = {
     siteName: "PRISTYLE DESIGN",
     images: [
       {
-        url: "/images/logos/logoimagetexte.webp",
+        url: "/images/logos/pristyle-og.webp",
         width: 1200,
         height: 630,
-        alt: "PriStyle | Haute Couture Africaine Cameroun",
+        alt: "PRISTYLE DESIGN | Le style qui parle pour toi",
       },
     ],
   },
@@ -75,7 +75,7 @@ export const metadata = {
     title: "PRISTYLE DESIGN | Le style qui parle pour toi",
     description:
       "PRISTYLE DESIGN, la marque de mode mixte qui fusionne modernité et élégance africaine. Soyez stylé sans effort, portez fièrement votre identité.",
-    images: ["/images/logos/logoimagetexte.webp"],
+    images: ["/images/logos/pristyle-og.webp"],
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app',
@@ -110,8 +110,8 @@ export default function RootLayout({ children }) {
               description:
                 "PRISTYLE DESIGN, marque de mode mixte fusionnant modernité et élégance africaine à Douala. Le style africain moderne à portée de tous.",
               url: process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app",
-              logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/logoimagetexte.webp`,
-              image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/logoimagetexte.webp`,
+              logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/pristyle-og.webp`,
+              image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/pristyle-og.webp`,
               telephone: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
                 ? `+${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`
                 : "+33644814218",
