@@ -20,19 +20,9 @@ const nextConfig = {
     root: import.meta.dirname,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "hycvllacbcyetrvogpdl.supabase.co",
-        pathname: "/storage/v1/object/public/**",
-      },
-    ],
-    formats: ["image/avif", "image/webp"],
-    qualities: [68, 75],
-    deviceSizes: [640, 768, 1024, 1280, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Cache les images optimisées 30 jours côté CDN Next
-    minimumCacheTTL: 60 * 60 * 24 * 30,
+    // Images Supabase déjà en WebP 1080px q82 — bypass de l'optimiseur Vercel
+    // pour rester sous les 5K transformations/mois du plan gratuit.
+    unoptimized: true,
   },
   // Compression gzip/brotli des réponses HTML/JSON
   compress: true,
