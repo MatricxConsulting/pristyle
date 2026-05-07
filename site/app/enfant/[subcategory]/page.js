@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import CollectionLayout from '../../components/CollectionLayout/CollectionLayout';
 import { getCollectionSubcategories, getSubcategoryProducts } from '../../../lib/data';
+import { buildItemListJsonLd } from '../../../lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
 

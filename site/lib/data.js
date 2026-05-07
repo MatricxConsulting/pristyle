@@ -124,6 +124,21 @@ export async function getEnfantPairs() {
     .map(imgs => ({ front: imgs[0], back: imgs[1] || imgs[0] }));
 }
 
+// Pour le sitemap : retourne tous les image_url (chemins storage) des produits actifs.
+// Utilisé pour générer les routes /p/{path}.
+export async function getAllProductImagePaths() {
+  const { data, error } = await supabase
+    .from('product_images')
+    .select('image_url, products!inner(is_active)')
+    .eq('products.is_active', true);
+
+  if (error || !data) {
+    console.warn('Supabase: getAllProductImagePaths error:', error?.message);
+    return [];
+  }
+  return data.map(r => r.image_url);
+}
+
 export async function getCollectionSubcategories(categorySlug) {
   const { data: category, error: catError } = await supabase
     .from('categories')

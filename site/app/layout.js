@@ -83,8 +83,32 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/logos/logoimageonly.webp", type: "image/webp", sizes: "192x192" },
+    ],
+    apple: { url: "/images/logos/logoimageonly.webp", sizes: "180x180" },
+  },
+  applicationName: "PRISTYLE DESIGN",
+  authors: [{ name: "PRISTYLE DESIGN", url: "https://pristyle.vercel.app" }],
+  creator: "PRISTYLE DESIGN",
+  publisher: "PRISTYLE DESIGN",
+  category: "fashion",
+  formatDetection: { telephone: true, email: true, address: true },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#C8A87E" },
+    { media: "(prefers-color-scheme: dark)", color: "#1A1A1A" },
+  ],
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }) {

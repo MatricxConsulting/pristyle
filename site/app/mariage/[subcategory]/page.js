@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import CollectionLayout from '../../components/CollectionLayout/CollectionLayout';
 import { getCollectionSubcategories, getSubcategoryProducts } from '../../../lib/data';
+import { buildItemListJsonLd } from '../../../lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pristyle.vercel.app';
 
@@ -60,11 +61,22 @@ export default async function MariageSubcategoryPage({ params, searchParams }) {
     ],
   };
 
+  const itemListJsonLd = buildItemListJsonLd({
+    products,
+    name: `${current.name} — Tenues Mariage PriStyle`,
+    page,
+    limit: 18,
+  });
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
       <CollectionLayout
         gender="mariage"
