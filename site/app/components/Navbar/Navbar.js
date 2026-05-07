@@ -16,9 +16,9 @@ const NAV_ITEMS = [
 ];
 
 const TRANSPARENT_LOGO = {
-  src: "/images/logos/pristyle-transparent.webp",
-  width: 1593,
-  height: 882,
+  src: "/images/logos/nouveaulogo.png",
+  width: 1439,
+  height: 823,
 };
 
 const SCROLLED_LOGO = {
