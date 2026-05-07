@@ -114,7 +114,7 @@ export default function RootLayout({ children }) {
               image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://pristyle.vercel.app"}/images/logos/pristyle-og.webp`,
               telephone: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
                 ? `+${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`
-                : "+33644814218",
+                : "+237671979650",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Makepe BM",

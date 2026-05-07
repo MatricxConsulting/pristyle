@@ -27,7 +27,7 @@ export default function Contact() {
               <div className={styles.cardBody}>
                 <p className={styles.cardLabel}>Téléphone</p>
                 <p className={styles.cardSub}>Envoyez-nous un message</p>
-                <a href="tel:+33644814218" className={styles.cardValue}>+33 6 44 81 42 18</a>
+                <a href="tel:+237671979650" className={styles.cardValue}>+237 6 71 97 96 50</a>
               </div>
             </div>
 
