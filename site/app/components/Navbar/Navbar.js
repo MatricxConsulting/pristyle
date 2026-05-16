@@ -29,13 +29,20 @@ const SCROLLED_LOGO = {
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  // Pendant le SSG, usePathname peut renvoyer null → on assume "home" pour ne pas
+  // rendre la mauvaise variante de navbar dans le HTML pré-rendu.
+  const [mounted, setMounted] = useState(false);
+  const isHome = !mounted || pathname === "/";
 
   // scrollPos permet de dériver scrolled instantanément lors des navigations
   const [scrollPos, setScrollPos] = useState(0);
   const scrolled = !isHome || scrollPos > 50;
   const [menuOpen, setMenuOpen] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!isHome) {
