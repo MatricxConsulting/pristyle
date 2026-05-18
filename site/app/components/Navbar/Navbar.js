@@ -16,9 +16,9 @@ const NAV_ITEMS = [
 ];
 
 const TRANSPARENT_LOGO = {
-  src: "/images/logos/nouveaulogo.png",
-  width: 1439,
-  height: 823,
+  src: "/images/logos/logotextenoir.png",
+  width: 1622,
+  height: 970,
 };
 
 const SCROLLED_LOGO = {
