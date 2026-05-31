@@ -3,19 +3,21 @@
 import { useState } from "react";
 import styles from "./Contact.module.css";
 
-// Tuile satellite Esri World Imagery - Makepe BM, Douala (zoom 14, x=8633, y=8006)
-const SAT_TILE = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/14/8006/8633";
+// Tuile satellite Esri World Imagery - PriStyle Design, Douala (zoom 14, x=8634, y=8006)
+const SAT_TILE = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/14/8006/8634";
+const DEST_LAT = "4.0807195";
+const DEST_LNG = "9.7299451";
 
 export default function MapImage() {
   const [failed, setFailed] = useState(false);
 
   return (
     <a
-      href="https://www.google.com/maps/dir/?api=1&destination=Makepe+BM%2C+Douala%2C+Cameroun"
+      href={`https://www.google.com/maps/dir/?api=1&destination=${DEST_LAT},${DEST_LNG}&travelmode=driving`}
       target="_blank"
       rel="noopener noreferrer"
       className={styles.mapLink}
-      aria-label="Obtenir itineraire PriStyle Makepe BM Douala"
+      aria-label="Obtenir itineraire vers PriStyle Design Douala"
     >
       {!failed ? (
         <img

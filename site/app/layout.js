@@ -148,8 +148,8 @@ export default function RootLayout({ children }) {
               },
               geo: {
                 "@type": "GeoCoordinates",
-                latitude: "4.0511",
-                longitude: "9.7679",
+                latitude: "4.0807195",
+                longitude: "9.7299451",
               },
               priceRange: "$$",
               areaServed: [
