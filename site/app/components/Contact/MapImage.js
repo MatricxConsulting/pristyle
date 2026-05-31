@@ -22,7 +22,7 @@ export default function MapImage() {
       {!failed ? (
         <img
           src={SAT_TILE}
-          alt="Vue satellite Makepe BM Douala"
+          alt="Vue satellite chez PriStyle, Douala"
           className={styles.map}
           loading="lazy"
           width="256"
@@ -35,7 +35,7 @@ export default function MapImage() {
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
-          <span>Makepe BM, Douala, Cameroun</span>
+          <span>Chez PriStyle, Douala</span>
         </div>
       )}
 
@@ -49,7 +49,7 @@ export default function MapImage() {
       )}
 
       {!failed && (
-        <div className={styles.mapAddressLabel}>Makepe BM, Douala</div>
+        <div className={styles.mapAddressLabel}>Chez PriStyle</div>
       )}
 
       <div className={styles.mapOverlayBtn}>Obtenir l&apos;itin&eacute;raire</div>
